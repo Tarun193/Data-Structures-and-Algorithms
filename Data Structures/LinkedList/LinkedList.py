@@ -10,6 +10,8 @@ class Node:
         self.next  = next
     
     # This methods gives the String repersentation of the object
-    # So when even some will call print method on the Node object It will print node's value
+    # So when even some will call print method on the Node object,
+    # It will print node's value
+    # For example print(Node(4)) -> 4
     def __str__(self) -> str:
         return str(self.value)
