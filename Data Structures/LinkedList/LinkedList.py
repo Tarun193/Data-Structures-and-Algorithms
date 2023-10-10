@@ -31,18 +31,36 @@ class LinkedList:
         """
         self.head = head
 
+    def add(self, value):
+        """
+        Adds a new value to the end of the linked list.
+
+        If the linked list is empty (head is None), create a new node with the given value as the head.
+        If the linked list is not empty, traverse the list to find the last node and insert the new node after it.
+
+        :param value: The value to be added to the linked list.
+        """
+        if self.head is None:  # Check if the list is empty
+            self.head = Node(value)
+            return
+
+        # If the list is not empty, find the last element (node) to insert the new node after it
+        current = self.head
+        while current.next is not None:
+            current = current.next
+        current.next = Node(value)
+
     def __str__(self) -> str:
         """
         Return a string representation of the LinkedList.
         """
-        temp = self.head
+        current = self.head
         list_string = ''
-        while temp:
-            list_string += str(temp.value) # Convert the value to a string
-            if temp.next: # adding a separator
+        while current != None:
+            list_string += str(current.value) # Convert the value to a string
+            if current.next: # adding a separator
                 list_string += "-->"
-            temp = temp.next
+            current = current.next
         return list_string
 
 
-print(LinkedList(Node(4, Node(5, Node(6)))))
