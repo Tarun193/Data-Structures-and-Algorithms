@@ -50,24 +50,68 @@ class LinkedList:
             current = current.next
         current.next = Node(value)
     
-    class LinkedList:
-        def __init__(self):
-            self.head = None
 
-        def length(self):
-            """
-            Returns the length of the linked list.
+    def length(self):
+        """
+        Returns the length of the linked list.
 
-            Returns:
-            int: The number of nodes in the linked list.
-            """
-            count = 0
-            current = self.head 
-            while current:
-                count += 1
+        Returns:
+        int: The number of nodes in the linked list.
+        """
+        count = 0
+        current = self.head 
+        while current:
+            count += 1
+            current = current.next
+        return count
+    
+    def pop(self, index = None):
+        """
+        Remove and return the element at the specified index.
+
+        Args:
+        - index (int, optional): The index of the element to be removed. If None, it removes the last element.
+
+        Returns:
+        - The value of the removed element.
+
+        Raises:
+        - IndexError: If the provided index is out of range.
+
+        """
+        if self.head == None: # if list is empty
+            print("Nothing to pop")
+
+        if index == 0: # if we have to pop first element
+            value = self.head.value
+            self.head = self.head.next
+            return value
+    
+        # either the index is not given or index is given but it is last index
+        # in both cases we have to do same operation
+        current = self.head
+        previous = None
+        if not index or index == self.length() - 1:
+            while current.next:
+                previous = current
                 current = current.next
-            return count
-
+            value = current.value
+            previous.next = None
+            return value
+        
+        if 0 <= index  < self.length():
+            i = 0
+            while i != index:
+                previous = current
+                current = current.next
+            value = current.value
+            previous.next = current.next
+            return value
+        
+        else:
+            print("Index out of range, length is ", self.length())
+            raise IndexError("Index out of range")
+    
     def __str__(self) -> str:
         """
         Return a string representation of the LinkedList.
