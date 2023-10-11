@@ -49,6 +49,24 @@ class LinkedList:
         while current.next is not None:
             current = current.next
         current.next = Node(value)
+    
+    class LinkedList:
+        def __init__(self):
+            self.head = None
+
+        def length(self):
+            """
+            Returns the length of the linked list.
+
+            Returns:
+            int: The number of nodes in the linked list.
+            """
+            count = 0
+            current = self.head 
+            while current:
+                count += 1
+                current = current.next
+            return count
 
     def __str__(self) -> str:
         """
