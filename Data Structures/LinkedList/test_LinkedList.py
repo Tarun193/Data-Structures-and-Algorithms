@@ -60,3 +60,34 @@ class TestLinkedList(unittest.TestCase):
         linked_list.add(1)
         with self.assertRaises(IndexError):
             linked_list.pop(1)
+    
+    def test_insert(self):
+        # Test inserting at the beginning of the list
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.insert(0, 0)
+        self.assertEqual(str(linked_list), "0-->1-->2")
+
+        # Test inserting at the end of the list
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.insert(3, 2)
+        self.assertEqual(str(linked_list), "1-->2-->3")
+
+        # Test inserting at a specific index
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.add(3)
+        linked_list.insert(4, 1)
+        self.assertEqual(str(linked_list), "1-->4-->2-->3")
+
+        # Test inserting at an index that is out of range
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        with self.assertRaises(IndexError):
+            linked_list.insert(3, 3)
+    

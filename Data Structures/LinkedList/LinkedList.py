@@ -112,6 +112,37 @@ class LinkedList:
             print("Index out of range, length is ", self.length())
             raise IndexError("Index out of range")
     
+
+
+    def insert(self, value, index):
+        """
+        Inserts the element at specific index
+        Args:
+        - index (int): The index at which element will get inserted.
+        - value (Object): Value to be inserted.
+        """
+        # Check if index is out of range
+        if index < 0 or index >= self.length():
+            print("Index out of range, length is ", self.length())
+            raise IndexError("Index out of range")
+    
+        # If index is 0, insert at the beginning of the list
+        if index == 0:
+            self.head = Node(value, self.head)
+        
+        # Traverse the list until the desired index is reached
+        current = self.head
+        previous = None
+
+        while index > 0:
+            index -= 1
+            previous = current
+            current = current.next
+
+        # Insert the new node at the desired index
+        previous.next = Node(value, current)
+
+    
     def __str__(self) -> str:
         """
         Return a string representation of the LinkedList.
