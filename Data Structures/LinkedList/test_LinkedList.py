@@ -52,6 +52,7 @@ class TestLinkedList(unittest.TestCase):
         
         # Test removing from an empty list
         linked_list = LinkedList()
+        
         with self.assertRaises(IndexError):
             linked_list.pop()
         
@@ -91,3 +92,49 @@ class TestLinkedList(unittest.TestCase):
         with self.assertRaises(IndexError):
             linked_list.insert(3, 3)
     
+    def test_remove(self):
+        # Test removing the first element
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.add(3)
+        linked_list.remove(1)
+        self.assertEqual(str(linked_list), "2-->3")
+
+        # Test removing the last element
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.add(3)
+        linked_list.remove(3)
+        self.assertEqual(str(linked_list), "1-->2")
+
+        # Test removing an element at a specific index
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.add(3)
+        linked_list.remove(2)
+        self.assertEqual(str(linked_list), "1-->3")
+
+        # Test removing a non-existent element
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.add(3)
+        linked_list.remove(4)
+        self.assertEqual(str(linked_list), "1-->2-->3")
+
+        # Test removing from an empty list
+        linked_list = LinkedList()
+        with self.assertRaises(ValueError):
+            linked_list.remove(1)
+
+
+test = TestLinkedList()
+
+test.test_add()
+test.test_insert()
+test.test_length()
+test.test_pop()
+test.test_remove()

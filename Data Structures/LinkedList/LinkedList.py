@@ -81,8 +81,9 @@ class LinkedList:
         """
         if self.head == None: # if list is empty
             print("Nothing to pop")
+            raise IndexError("pop from empty")
 
-        if index == 0: # if we have to pop first element
+        if index == 0 or self.length() == 1: # if we have to pop first element
             value = self.head.value
             self.head = self.head.next
             return value
@@ -104,6 +105,7 @@ class LinkedList:
             while i != index:
                 previous = current
                 current = current.next
+                i += 1
             value = current.value
             previous.next = current.next
             return value
@@ -122,13 +124,14 @@ class LinkedList:
         - value (Object): Value to be inserted.
         """
         # Check if index is out of range
-        if index < 0 or index >= self.length():
+        if index < 0 or index > self.length():
             print("Index out of range, length is ", self.length())
             raise IndexError("Index out of range")
     
         # If index is 0, insert at the beginning of the list
         if index == 0:
             self.head = Node(value, self.head)
+            return
         
         # Traverse the list until the desired index is reached
         current = self.head
@@ -142,6 +145,30 @@ class LinkedList:
         # Insert the new node at the desired index
         previous.next = Node(value, current)
 
+    def remove(self, value):
+        """
+        removes the given value from the list
+        Args:
+        - value: value which will be removed
+        """
+
+        current = self.head
+        previous = None
+        found = False
+        while current:
+            if current.value == value:
+                found = True
+                if previous:
+                    previous.next = current.next
+                else:
+                    self.head = current.next
+                break
+            previous = current
+            current = current.next
+        
+        if not found:
+            print(f"{value} not found in the list")
+            raise ValueError("Value not found")
     
     def __str__(self) -> str:
         """
