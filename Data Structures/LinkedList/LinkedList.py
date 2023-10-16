@@ -170,6 +170,24 @@ class LinkedList:
             print(f"{value} not found in the list")
             raise ValueError("Value not found")
     
+    def reverse(self):
+        """
+        Method performs an in-place reverse of linkedlist
+        """
+        if not (self.head and self.head.next):
+            return
+        
+        current = self.head
+        previous = None
+        next = None
+        while current:
+            next = current.next
+            current.next = previous
+            previous = current
+            current = next
+        self.head = previous
+
+    
     def __str__(self) -> str:
         """
         Return a string representation of the LinkedList.
@@ -182,5 +200,3 @@ class LinkedList:
                 list_string += "-->"
             current = current.next
         return list_string
-
-

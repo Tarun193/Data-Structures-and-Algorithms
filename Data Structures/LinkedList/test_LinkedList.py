@@ -52,7 +52,6 @@ class TestLinkedList(unittest.TestCase):
         
         # Test removing from an empty list
         linked_list = LinkedList()
-        
         with self.assertRaises(IndexError):
             linked_list.pop()
         
@@ -122,13 +121,33 @@ class TestLinkedList(unittest.TestCase):
         linked_list.add(1)
         linked_list.add(2)
         linked_list.add(3)
-        linked_list.remove(4)
-        self.assertEqual(str(linked_list), "1-->2-->3")
+        with self.assertRaises(ValueError):
+            linked_list.remove(4)
 
         # Test removing from an empty list
         linked_list = LinkedList()
         with self.assertRaises(ValueError):
             linked_list.remove(1)
+    
+    def test_reverse(self):
+        # Test reversing a linked list with multiple elements
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.add(3)
+        linked_list.reverse()
+        self.assertEqual(str(linked_list), "3-->2-->1")
+
+        # Test reversing a linked list with a single element
+        linked_list = LinkedList()
+        linked_list.add(1)
+        linked_list.reverse()
+        self.assertEqual(str(linked_list), "1")
+
+        # Test reversing an empty linked list
+        linked_list = LinkedList()
+        linked_list.reverse()
+        self.assertEqual(str(linked_list), "")
 
 
 test = TestLinkedList()
@@ -136,5 +155,5 @@ test = TestLinkedList()
 test.test_add()
 test.test_insert()
 test.test_length()
-test.test_pop()
+test.test_reverse()
 test.test_remove()
