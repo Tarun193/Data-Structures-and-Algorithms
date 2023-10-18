@@ -51,3 +51,37 @@ def twoSum(self, nums, target):
                 ans.append(num_index.get(target-nums[i]))
                 return ans
         return -1
+
+
+"""
+3rd Solution:
+just using one for loop, in second solution we didn't used nested for loop,
+but still we were using 2 for loops, one to create hashmap and other to traverse
+the list.
+
+Now, let's do it in one loop
+"""
+
+def twoSum(self, nums, target):
+    # Create an empty dictionary to store numbers and their indices.
+    num_index = {}
+    ans = []  # Create an empty list to store the result.
+
+    # Iterate through the array using an index 'i'.
+    for i in range(len(nums)):
+        # Calculate the value 'y', y = target - x we need to reach the target
+        # Check if 'y' exists in the 'num_index' dictionary.
+        # The 'get' function returns -1 if 'y' is not in the dictionary.
+        if num_index.get(target - nums[i], -1) != -1:
+            # If 'y' exists, it means we've found a pair of numbers
+            # that add up to the target. Add their indices to 'ans'.
+            ans.append(i)
+            ans.append(num_index[target - nums[i]])
+            return ans  # Return the indices of the two numbers.
+
+        # If 'y' does not exist in the dictionary, add the current number
+        # and its index to the dictionary for future reference.
+        num_index[nums[i]] = i
+
+    # If no pair of numbers is found that adds up to the target, return -1.
+    return -1
