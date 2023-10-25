@@ -61,7 +61,7 @@ We check the stack's top = '{', and the closed one is ')'. They do not make a pa
 """
 
 
-def isValid(self, s: str) -> bool:
+def isValid(s: str) -> bool:
     stk = []
     for char in s:
         if char in '({[':

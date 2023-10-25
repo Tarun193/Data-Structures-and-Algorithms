@@ -51,7 +51,7 @@ class ListNode:
         self.val = val
         self.next = next
 
-def mergeTwoLists(self, list1, list2):
+def mergeTwoLists(list1, list2):
         # Create an empty merged_list and a temp pointer to keep track of the head
         merged_list = ListNode()
         temp = merged_list

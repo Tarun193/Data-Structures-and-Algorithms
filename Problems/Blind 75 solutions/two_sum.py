@@ -30,7 +30,7 @@ To look up fast for a number we can use Hashmap as a data Structures,
 as in hashmap look up speed is O(1) constant.
 """
 
-def twoSum(self, nums, target):
+def twoSum(nums, target):
         num_index = {nums[i] : i for i in range(len(nums))}
         """
         num_index = {nums[i] : i for i in range(len(nums))} This can b written as:
